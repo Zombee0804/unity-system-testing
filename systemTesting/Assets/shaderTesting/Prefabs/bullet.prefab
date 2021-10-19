@@ -144,5 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletBody: {fileID: 6709582007525745465}
-  moveSpeed: 80
+  moveSpeed: 25
   lifeSpan: 5
