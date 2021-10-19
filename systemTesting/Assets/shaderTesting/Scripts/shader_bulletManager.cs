@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletManager : MonoBehaviour
+public class shader_bulletManager : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public spaceInvaderHealth SIHealth;
+    public shader_playerHealth SIHealth;
 
     [Header("Alarm Vars")]
     public float bulletInterval;

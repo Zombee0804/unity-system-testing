@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletMovement : MonoBehaviour
+public class shader_bulletMovement : MonoBehaviour
 {
     public Rigidbody2D bulletBody;
     public float moveSpeed;

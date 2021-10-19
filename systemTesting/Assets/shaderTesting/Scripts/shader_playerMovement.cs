@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spaceInvaderMovement : MonoBehaviour
+public class shader_playerMovement : MonoBehaviour
 {
     public Rigidbody2D playerBody;
-    public spaceInvaderHealth SIHealth;
+    public shader_playerHealth SIHealth;
     public float moveSpeed;
 
     void Update() {

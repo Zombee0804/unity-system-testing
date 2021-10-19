@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class platformer_playerMovement : MonoBehaviour
 {
     [Header("Component Vars")]
     public Rigidbody2D playerBody;

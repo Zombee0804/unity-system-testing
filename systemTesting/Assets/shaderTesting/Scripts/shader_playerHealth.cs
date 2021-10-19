@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spaceInvaderHealth : MonoBehaviour
+public class shader_playerHealth : MonoBehaviour
 {
     public float startingHealth;
     private float currentHealth;

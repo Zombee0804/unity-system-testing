@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cameraMovement : MonoBehaviour
+public class platformer_cameraMovement : MonoBehaviour
 {
     public Transform target;
     public float movementDiv;

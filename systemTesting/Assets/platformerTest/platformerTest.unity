@@ -584,7 +584,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 764790043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61ed20754b61b4458f40c2afeed669a, type: 3}
+  m_Script: {fileID: 11500000, guid: 802782667d23e494eb02dcd19d7a8ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 764790048}
@@ -592,8 +592,8 @@ MonoBehaviour:
   defaultJumpForce: 5
   boostedMoveSpeed: 10
   boostedJumpForce: 10
-  groundedBuffer: 1
-  speedBoostBuffer: 0.75
+  groundedBuffer: 0.1
+  speedBoostBuffer: 2
   jumpBoostBuffer: 0.1
 --- !u!61 &764790047
 BoxCollider2D:
