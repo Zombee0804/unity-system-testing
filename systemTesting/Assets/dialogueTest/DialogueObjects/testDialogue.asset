@@ -19,6 +19,6 @@ MonoBehaviour:
   - I have a gift
   responses:
   - responseText: What is the gift?
-    nextDialogue: {fileID: 0}
+    nextDialogue: {fileID: 11400000, guid: 06532562729c76744a83f78b206551d8, type: 2}
   - responseText: Go away you slut
-    nextDialogue: {fileID: 0}
+    nextDialogue: {fileID: 11400000, guid: 6070b0396b8f30d4ca34a202888582e8, type: 2}
