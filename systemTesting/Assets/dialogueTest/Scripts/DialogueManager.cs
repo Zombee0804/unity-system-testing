@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class DialogueManager : MonoBehaviour
@@ -26,10 +27,16 @@ public class DialogueManager : MonoBehaviour
     }
     public DIALOGUE_STATE currentState;
 
+    [Header("UI Settings")]
+    public SpriteRenderer dialogueBox;
+    public Text speakerText;
+    public Text dialogueText;
+
     void Start() {
         currentDialogue = startingDialogue;
         currentState = DIALOGUE_STATE.inactive;
         dialogueIndex = 0;
+        ClearDialogueBox();
     }
 
     void Update() {
@@ -50,14 +57,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void DisplaySentence(string speaker, string sentence) {
-        Debug.Log(speaker + " : " + sentence);
-    }
-
-    void DisplayResposne(string inputKey, string sentence) {
-        Debug.Log(" RESPONSE: " + inputKey + " - " + sentence);
-    }
-
     void StateDisplay() {
         string[] sentences = currentDialogue.sentences;
 
@@ -71,11 +70,11 @@ public class DialogueManager : MonoBehaviour
                     if (dialogueIndex < additionalDialogues.Length) {
                         currentDialogue = additionalDialogues[dialogueIndex];
                         dialogueIndex += 1;
-                        Debug.Log("NEXT DIALOGUE LOADED");
+                        ClearDialogueBox();
                     }
                     else {
                         currentDialogue = null;
-                        Debug.Log("NO MORE DIALOGUE OPTIONS");
+                        ClearDialogueBox();
                     }
                 }
             }
@@ -130,5 +129,30 @@ public class DialogueManager : MonoBehaviour
                 displayedCurrent = false;
             }
         }
+    }
+
+    void DisplaySentence(string speaker, string sentence) {
+        dialogueBox.enabled = true;
+        string displayText = "";
+        for (var i = 0; i < sentence.Length; i += 1) {
+            if (sentence[i] + "" == " ") {
+                displayText += "     ";
+            }
+            else {
+                displayText += sentence[i];
+            }
+        }
+        speakerText.text = speaker;
+        dialogueText.text = displayText;
+    }
+
+    void DisplayResposne(string inputKey, string sentence) {
+        dialogueBox.enabled = true;
+        Debug.Log(" RESPONSE: " + inputKey + " - " + sentence);
+    }
+
+    void ClearDialogueBox() {
+        DisplaySentence(" ", " ");
+        dialogueBox.enabled = false;
     }
 }
