@@ -9,12 +9,16 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue Variables")]
     public DialogueObject currentDialogue;
-    private int dialogueCounter;
+    private int sentenceIndex;
     private bool displayedCurrent;
 
     [Header("Resopnse Variables")]
     public bool displayedResponses;
 
+    [Header("Other")]
+    public int dialogueIndex;
+    public DialogueObject[] additionalDialogues;
+    
     public enum DIALOGUE_STATE {
         inactive,
         displaying,
@@ -25,13 +29,14 @@ public class DialogueManager : MonoBehaviour
     void Start() {
         currentDialogue = startingDialogue;
         currentState = DIALOGUE_STATE.inactive;
+        dialogueIndex = 0;
     }
 
     void Update() {
-        if (currentState == DIALOGUE_STATE.inactive) {
+        if (currentState == DIALOGUE_STATE.inactive && currentDialogue != null) {
             if (Input.GetKeyDown(KeyCode.Space) == true) {
                 currentState = DIALOGUE_STATE.displaying;
-                dialogueCounter = 0;
+                sentenceIndex = 0;
                 displayedCurrent = false;
             }
         }
@@ -57,13 +62,21 @@ public class DialogueManager : MonoBehaviour
         string[] sentences = currentDialogue.sentences;
 
         // If all dialogue options have been said, load the responses or end the dialogue
-        if (dialogueCounter >= sentences.Length - 1) {
+        if (sentenceIndex >= sentences.Length - 1) {
             if (currentDialogue.responses.Length == 0) { 
-                if (dialogueCounter > sentences.Length - 1) { // It needs the second condition so that it waits for another enter
+                if (sentenceIndex > sentences.Length - 1) { // It needs the second condition so that it waits for another enter
                     currentState = DIALOGUE_STATE.inactive;
-                    Debug.Log("DIALOGUE ENDED");
-                    currentDialogue = null;
                     displayedCurrent = true; // Makes sure it doesn't attempt to display another sentence
+
+                    if (dialogueIndex < additionalDialogues.Length) {
+                        currentDialogue = additionalDialogues[dialogueIndex];
+                        dialogueIndex += 1;
+                        Debug.Log("NEXT DIALOGUE LOADED");
+                    }
+                    else {
+                        currentDialogue = null;
+                        Debug.Log("NO MORE DIALOGUE OPTIONS");
+                    }
                 }
             }
             else {
@@ -74,13 +87,13 @@ public class DialogueManager : MonoBehaviour
         
         // Prints the current sentence if it has not already been displayed
         if (displayedCurrent == false) {
-            DisplaySentence(currentDialogue.speaker, sentences[dialogueCounter]);
+            DisplaySentence(currentDialogue.speaker, sentences[sentenceIndex]);
             displayedCurrent = true;
         }
         else {
             // Waits for the user to press enter
             if (Input.GetKeyDown(KeyCode.Return) == true) {
-                dialogueCounter += 1;
+                sentenceIndex += 1;
                 displayedCurrent = false;
             }
         }
@@ -113,7 +126,7 @@ public class DialogueManager : MonoBehaviour
             if (inputChoice != 0) {
                 currentDialogue = responses[inputChoice-1].nextDialogue;
                 currentState = DIALOGUE_STATE.displaying;
-                dialogueCounter = 0;
+                sentenceIndex = 0;
                 displayedCurrent = false;
             }
         }
