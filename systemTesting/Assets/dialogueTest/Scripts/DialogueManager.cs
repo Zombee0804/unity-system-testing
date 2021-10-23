@@ -10,6 +10,9 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue Variables")]
     public DialogueObject currentDialogue;
+    public float charsPerSecond;
+    private int charIndex;
+    private float charIndexFloat;
     private int sentenceIndex;
     private bool displayedCurrent;
 
@@ -45,6 +48,9 @@ public class DialogueManager : MonoBehaviour
     void Start() {
         currentDialogue = startingDialogue;
         currentState = DIALOGUE_STATE.inactive;
+        charIndex = 0;
+        charIndexFloat = 0;
+        sentenceIndex = 0;
         dialogueIndex = 0;
         ClearDialogueBox();
     }
@@ -53,13 +59,15 @@ public class DialogueManager : MonoBehaviour
         if (currentState == DIALOGUE_STATE.inactive && currentDialogue != null) {
             if (Input.GetKeyDown(KeyCode.Space) == true) {
                 currentState = DIALOGUE_STATE.displaying;
+                charIndex = 0;
+                charIndexFloat = 0;
                 sentenceIndex = 0;
                 displayedCurrent = false;
             }
         }
 
         if (currentState == DIALOGUE_STATE.displaying) {
-            StateDisplay();
+            StateDisplaying();
         }
 
         if (currentState == DIALOGUE_STATE.waiting) {
@@ -67,11 +75,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void StateDisplay() {
+    void StateDisplaying() {
         string[] sentences = currentDialogue.sentences;
 
         // If all dialogue options have been said, load the responses or end the dialogue
-        if (sentenceIndex >= sentences.Length - 1) {
+        if (sentenceIndex >= sentences.Length - 1 && displayedCurrent == true) {
             if (currentDialogue.responses.Length == 0) { 
                 if (sentenceIndex > sentences.Length - 1) { // It needs the second condition so that it waits for another enter
                     currentState = DIALOGUE_STATE.inactive;
@@ -96,12 +104,19 @@ public class DialogueManager : MonoBehaviour
         
         // Prints the current sentence if it has not already been displayed
         if (displayedCurrent == false) {
-            DisplaySentence(currentDialogue.speaker, sentences[sentenceIndex]);
-            displayedCurrent = true;
+            if (sentenceIndex <= sentences.Length - 1) {
+                bool complete = DisplaySentence(currentDialogue.speaker, sentences[sentenceIndex]);
+                displayedCurrent = complete;
+            }
+            else {
+                displayedCurrent = true;
+            }
         }
         else {
             // Waits for the user to press enter
             if (Input.GetKeyDown(KeyCode.Return) == true) {
+                charIndex = 0;
+                charIndexFloat = 0;
                 sentenceIndex += 1;
                 displayedCurrent = false;
             }
@@ -150,6 +165,8 @@ public class DialogueManager : MonoBehaviour
                 currentDialogue = responses[confirmedChoice-1].nextDialogue;
                 if (currentDialogue == null) {
                     currentState = DIALOGUE_STATE.inactive;
+                    charIndex = 0;
+                    charIndexFloat = 0;
                     sentenceIndex = 0;
                     displayedCurrent = false;
                     ClearResponses();
@@ -157,6 +174,8 @@ public class DialogueManager : MonoBehaviour
                 }
                 else {
                     currentState = DIALOGUE_STATE.displaying;
+                    charIndex = 0;
+                    charIndexFloat = 0;
                     sentenceIndex = 0;
                     displayedCurrent = false;
                     ClearResponses();
@@ -165,10 +184,32 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void DisplaySentence(string speaker, string sentence) {
+    bool DisplaySentence(string speaker, string sentence) {
+        bool result;
+        sentence = ExpandSpaces(sentence);
+        
         dialogueBox.enabled = true;
         speakerText.text = speaker;
-        dialogueText.text = ExpandSpaces(sentence);
+        if (charIndex < sentence.Length) {
+            charIndexFloat += charsPerSecond * Time.deltaTime;
+
+            // NOTE: This is only needed because the font spaces are small, so I had to use 'ExpandSpaces' to make each space into five spaces
+            if (sentence[charIndex].ToString() == " " && sentence != "     ") {
+                charIndex += 5;
+                charIndexFloat += 5;
+            }
+
+            if (charIndexFloat > charIndex) {
+                charIndex += 1;
+            }
+            result = false;
+        }
+        else {
+            result = true;
+        }
+        dialogueText.text = sentence.Substring(0, charIndex);
+
+        return result;
     }
 
     List<Text> DisplayResponses(ResponseObject[] responses) {
