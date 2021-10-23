@@ -111,6 +111,11 @@ public class DialogueManager : MonoBehaviour
             else {
                 displayedCurrent = true;
             }
+
+            if (Input.GetKeyDown(KeyCode.Return) == true) {
+                charIndexFloat = ExpandSpaces(sentences[sentenceIndex]).Length;
+                charIndex = sentences.Length;
+            }
         }
         else {
             // Waits for the user to press enter
