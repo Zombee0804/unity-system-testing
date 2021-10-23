@@ -234,14 +234,26 @@ MonoBehaviour:
   startingDialogue: {fileID: 11400000, guid: ec8926fa921f3dc478b4b2daef47cbcb, type: 2}
   currentDialogue: {fileID: 0}
   displayedResponses: 0
+  currentlySelected: 0
+  responseYPos: -160
+  screenWidth: 450
+  response2Pos:
+  - -175
+  - 175
+  response3Pos:
+  - -250
+  - 0
+  - 250
+  speakerText: {fileID: 151574687}
+  dialogueText: {fileID: 888165182}
+  dialogueFont: {fileID: 12800000, guid: 89576bca7a6078d44b24a9d635cbbbf4, type: 3}
+  dialogueCanvas: {fileID: 2100658778}
+  dialogueBox: {fileID: 648339115}
   dialogueIndex: 0
   additionalDialogues:
   - {fileID: 11400000, guid: 95ae05f06ef89a046a17933cbf817b38, type: 2}
   - {fileID: 11400000, guid: 238464b2bc3133d4ab27046fb6b27cd5, type: 2}
   currentState: 0
-  dialogueBox: {fileID: 648339115}
-  speakerText: {fileID: 151574687}
-  dialogueText: {fileID: 888165182}
 --- !u!4 &307341389
 Transform:
   m_ObjectHideFlags: 0
