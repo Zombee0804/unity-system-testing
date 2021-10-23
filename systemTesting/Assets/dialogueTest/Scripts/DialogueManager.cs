@@ -148,10 +148,19 @@ public class DialogueManager : MonoBehaviour
 
             if (confirmedChoice != 0) {
                 currentDialogue = responses[confirmedChoice-1].nextDialogue;
-                currentState = DIALOGUE_STATE.displaying;
-                sentenceIndex = 0;
-                displayedCurrent = false;
-                ClearResponses();
+                if (currentDialogue == null) {
+                    currentState = DIALOGUE_STATE.inactive;
+                    sentenceIndex = 0;
+                    displayedCurrent = false;
+                    ClearResponses();
+                    ClearDialogueBox();
+                }
+                else {
+                    currentState = DIALOGUE_STATE.displaying;
+                    sentenceIndex = 0;
+                    displayedCurrent = false;
+                    ClearResponses();
+                }
             }
         }
     }
