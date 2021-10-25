@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Other")]
     public int dialogueIndex;
-    public DialogueObject[] additionalDialogues;
+    private DialogueObject[] additionalDialogues;
     
     public enum DIALOGUE_STATE {
         inactive,
@@ -45,14 +45,20 @@ public class DialogueManager : MonoBehaviour
     }
     public DIALOGUE_STATE currentState;
 
-    void Start() {
+    public void Reset() {
         currentDialogue = startingDialogue;
         currentState = DIALOGUE_STATE.inactive;
         charIndex = 0;
         charIndexFloat = 0;
         sentenceIndex = 0;
         dialogueIndex = 0;
+        additionalDialogues = null;
+        currentlySelected = 0;
         ClearDialogueBox();
+    }
+
+    void Start() {
+        Reset();
     }
 
     void Update() {
@@ -84,6 +90,13 @@ public class DialogueManager : MonoBehaviour
                 if (sentenceIndex > sentences.Length - 1) { // It needs the second condition so that it waits for another enter
                     currentState = DIALOGUE_STATE.inactive;
                     displayedCurrent = true; // Makes sure it doesn't attempt to display another sentence
+
+                    if (additionalDialogues == null) {
+                        additionalDialogues = currentDialogue.additionalDialogues;
+                    }
+                    else if (dialogueIndex > additionalDialogues.Length) {
+                        additionalDialogues = currentDialogue.additionalDialogues;
+                    }
 
                     if (dialogueIndex < additionalDialogues.Length) {
                         currentDialogue = additionalDialogues[dialogueIndex];
@@ -169,6 +182,12 @@ public class DialogueManager : MonoBehaviour
             if (confirmedChoice != 0) {
                 currentDialogue = responses[confirmedChoice-1].nextDialogue;
                 if (currentDialogue == null) {
+
+                    if (responses[confirmedChoice-1].additionalDialogues.Length > dialogueIndex) {
+                        currentDialogue = responses[confirmedChoice-1].additionalDialogues[dialogueIndex];
+                        dialogueIndex += 1;
+                    }
+
                     currentState = DIALOGUE_STATE.inactive;
                     charIndex = 0;
                     charIndexFloat = 0;

@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38e34256090544b498c75102f1fcd790, type: 3}
-  m_Name: youAskedForTheGift
+  m_Name: iAmATravaller
   m_EditorClassIdentifier: 
-  speaker: Sam
+  speaker: John
   sentences:
-  - Here. Its a three fifths of a lemon
-  - '*runs away quickly*'
+  - Woah...
+  - Another traveller...
+  - My name is John
+  - It was nice to meet you!
   responses: []
+  additionalDialogues: []

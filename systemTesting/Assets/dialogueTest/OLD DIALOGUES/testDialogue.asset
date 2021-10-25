@@ -20,7 +20,12 @@ MonoBehaviour:
   responses:
   - responseText: What is the gift
     nextDialogue: {fileID: 11400000, guid: 06532562729c76744a83f78b206551d8, type: 2}
+    additionalDialogues: []
   - responseText: Go away you slut
     nextDialogue: {fileID: 11400000, guid: 6070b0396b8f30d4ca34a202888582e8, type: 2}
+    additionalDialogues: []
   - responseText: '*leave*'
     nextDialogue: {fileID: 0}
+    additionalDialogues:
+    - {fileID: 11400000, guid: 5c24d89db36595144bf47c912c1c0a4b, type: 2}
+  additionalDialogues: []

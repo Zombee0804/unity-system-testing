@@ -8,4 +8,5 @@ public class DialogueObject : ScriptableObject
     public string speaker;
     public string[] sentences;
     public ResponseObject[] responses;
+    public DialogueObject[] additionalDialogues;
 }

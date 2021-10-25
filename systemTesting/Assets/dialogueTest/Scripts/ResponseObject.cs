@@ -7,4 +7,5 @@ public class ResponseObject
 {
     public string responseText;
     public DialogueObject nextDialogue;
+    public DialogueObject[] additionalDialogues;
 }

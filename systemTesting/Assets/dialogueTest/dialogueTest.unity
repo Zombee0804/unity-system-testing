@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Speaker
+  m_Text: SPeaker
 --- !u!222 &151574688
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb967fd10488c434f98618aa075d5ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingDialogue: {fileID: 11400000, guid: ec8926fa921f3dc478b4b2daef47cbcb, type: 2}
+  startingDialogue: {fileID: 11400000, guid: e96a12d1fc05a984ea29099cfc117d51, type: 2}
   currentDialogue: {fileID: 0}
   charsPerSecond: 50
   displayedResponses: 0
@@ -251,9 +251,6 @@ MonoBehaviour:
   dialogueCanvas: {fileID: 2100658778}
   dialogueBox: {fileID: 648339115}
   dialogueIndex: 0
-  additionalDialogues:
-  - {fileID: 11400000, guid: 95ae05f06ef89a046a17933cbf817b38, type: 2}
-  - {fileID: 11400000, guid: 238464b2bc3133d4ab27046fb6b27cd5, type: 2}
   currentState: 0
 --- !u!4 &307341389
 Transform:
@@ -548,7 +545,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This  is  filler  dialogue...  Ignore  it.
+  m_Text: This     is     filler     text.     ignore     it.....
 --- !u!222 &888165183
 CanvasRenderer:
   m_ObjectHideFlags: 0
