@@ -109,8 +109,8 @@ public class shader02_valueChanger : MonoBehaviour
         angleValues = FadeValue(angleReference, angleValues);
 
         colourRed = FadeValue("_VoroR", colourRed, true);
-        colourGreen = FadeValue("_VoroG", colourGreen, true);
-        colourBlue = FadeValue("_VoroB", colourBlue, true);
+        // colourGreen = FadeValue("_VoroG", colourGreen, true);
+        // colourBlue = FadeValue("_VoroB", colourBlue, true);
     }
 
     Dictionary<string, float> FadeValue(string shaderRef, Dictionary<string, float> dict, bool mod = false) {
