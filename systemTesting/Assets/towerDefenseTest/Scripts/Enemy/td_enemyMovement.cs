@@ -29,27 +29,11 @@ public class td_enemyMovement : MonoBehaviour
             UpdateTargetPos();
         }
         else {
-            Vector3 movement = Vector3.zero;
             Vector3 diff = targetPos - transform.position;
-            if ((diff.x > -posBuffer && diff.x < posBuffer) && (diff.y > -posBuffer && diff.y < posBuffer)) {
+            Vector3 movement = diff.normalized; // Makes its magnitude (length) 1. E.G (6, 0, 0) would become (1, 0, 0)
+            if (diff.magnitude < posBuffer) {
                 atTarget = true;
                 transform.position = targetPos;
-            }
-            else if (diff.x == 0) {
-                if (diff.y > 0) {
-                    movement = Vector3.up;
-                }
-                else {
-                    movement = Vector3.down;
-                }
-            }
-            else if (diff.y == 0) {
-                if (diff.x > 0) {
-                    movement = Vector3.right;
-                }
-                else {
-                    movement = Vector3.left;
-                }
             }
             transform.position += movement * speed * Time.deltaTime;
         }
