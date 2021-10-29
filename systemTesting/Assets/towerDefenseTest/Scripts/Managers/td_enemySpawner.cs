@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class td_enemySpawner : MonoBehaviour
 {
@@ -12,10 +13,13 @@ public class td_enemySpawner : MonoBehaviour
     [Header("Spawn Vars")]
     public bool allEnemiesSpawned;
     public bool allEnemiesDestroyed;
-    public bool levelComplete;
+    public bool gameComplete;
     private int currentSpawnIndex;
     private float currentWaveAlarm;
     private List<GameObject> enemies = new List<GameObject>();
+
+    [Header("UI Vars")]
+    public Text waveText;
 
     void Start() {
         currentWave = 0;
@@ -24,11 +28,18 @@ public class td_enemySpawner : MonoBehaviour
         currentWaveAlarm = 0;
         allEnemiesSpawned = false;
         allEnemiesDestroyed = false;
-        levelComplete = false;
+        gameComplete = false;
+
+        SetWaveText();
+    }
+
+    void SetWaveText() {
+        waveText.color = Color.white;
+        waveText.text = " Wave: " + (currentWave+1).ToString();
     }
 
     void Update() {
-        if (levelComplete == false) {
+        if (gameComplete == false) {
             if (allEnemiesSpawned == false) {
                 currentWaveAlarm += Time.deltaTime;
 
@@ -41,7 +52,17 @@ public class td_enemySpawner : MonoBehaviour
                     allEnemiesSpawned = true;
                 }
             }
-            else if (allEnemiesDestroyed == true) {
+            else if (allEnemiesDestroyed == false) {
+                allEnemiesDestroyed = true;
+                foreach (GameObject enemy in enemies) {
+                    if (enemy != null) {
+                        allEnemiesDestroyed = false;
+                        break;
+                    }
+                }
+            }
+            else {
+                waveText.color = Color.green;
                 if (Input.GetKeyDown(KeyCode.Space) == true) {
                     currentSpawnIndex = 0;
                     currentWaveAlarm = 0;
@@ -50,18 +71,10 @@ public class td_enemySpawner : MonoBehaviour
                     allEnemiesDestroyed = false;
                     if (currentWave < waves.Length - 1) {
                         currentWave += 1;
+                        SetWaveText();
                     }
                     else {
-                        levelComplete = true;
-                    }
-                }
-            }
-            else {
-                allEnemiesDestroyed = true;
-                foreach (GameObject enemy in enemies) {
-                    if (enemy != null) {
-                        allEnemiesDestroyed = false;
-                        break;
+                        gameComplete = true;
                     }
                 }
             }
