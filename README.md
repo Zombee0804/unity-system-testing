@@ -5,7 +5,7 @@
 * [Platformer](#platformer-test)
 * [Shader Test 01](#shader-test-01)
 * [Shader Test 02](#shader-test-02)
-* [Dialouge Test](#dialogue-test)
+* [Dialogue Test](#dialogue-test)
 
 ## Overview
 Before starting my final game project for college later this year, I wanted to create different mini-levels in Unity, each of them intending to test my ability to create a certain feature. One level may have a specific type of combat, one level may have a dialogue system, etc.
