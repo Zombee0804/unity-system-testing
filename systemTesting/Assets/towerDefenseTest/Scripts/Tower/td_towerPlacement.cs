@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class td_towerPlacement : MonoBehaviour
 {
+    [Header("General")]
     public Camera cam;
     private bool isPlaced;
     public td_pathManager pathManager;
+    public float price;
 
+    [Header("Sprite Vars")]
     public SpriteRenderer spriteRen;
     private bool flashRed;
     public float flashLength;
@@ -23,7 +26,13 @@ public class td_towerPlacement : MonoBehaviour
 
     void Update() {
         if (isPlaced == false) {
-            // Moving to mouse poss
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                td_playerWallet.playerMoney += price;
+                Destroy(gameObject);
+            }
+
+            // Moving to mouse pos
             Vector3 mousePos = Input.mousePosition;
             mousePos = cam.ScreenToWorldPoint(mousePos);
             mousePos.z = 0;

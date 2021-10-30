@@ -25,6 +25,7 @@ public class td_shopItem : MonoBehaviour
             td_towerPlacement towerPlacement = tower.GetComponent<td_towerPlacement>();
             towerPlacement.cam = cam;
             towerPlacement.pathManager = pathManager;
+            towerPlacement.price = price;
         }
     }
 }
