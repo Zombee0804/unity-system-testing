@@ -6,8 +6,9 @@ public class td_towerPlacement : MonoBehaviour
 {
     [Header("General")]
     public Camera cam;
-    private bool isPlaced;
     public td_pathManager pathManager;
+    private bool isPlaced;
+    private bool insideTower;
     public float price;
 
     [Header("Sprite Vars")]
@@ -19,6 +20,7 @@ public class td_towerPlacement : MonoBehaviour
 
     void Start() {
         isPlaced = false;
+        insideTower = false;
         flashRed = false;
         
         defaultColour = spriteRen.color;
@@ -41,24 +43,26 @@ public class td_towerPlacement : MonoBehaviour
 
             // Placing
             if (Input.GetMouseButtonDown(0) == true) {
-                // Checking if the placement is inside the enemy path
                 bool isValidPlace = true;
-                Vector2[] toCheck = new Vector2[] {Vector2.up, Vector2.right};
-                foreach (Vector2 direction in toCheck) {
-                    RaycastHit2D ray01 = Physics2D.Raycast(transform.position, direction);
-                    RaycastHit2D ray02 = Physics2D.Raycast(transform.position, -direction);
-                    if (ray01.collider != null && ray02.collider != null) {
-                        if (ray01.collider.gameObject.tag == "cornerPoint" && ray02.collider.gameObject.tag == "cornerPoint") {
 
+                if (insideTower == false) {
+                    Vector2[] toCheck = new Vector2[] {Vector2.up, Vector2.right};
+                    foreach (Vector2 direction in toCheck) {
+                        LayerMask rayMask = LayerMask.GetMask("PathCorner");
+                        RaycastHit2D ray01 = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, rayMask);
+                        RaycastHit2D ray02 = Physics2D.Raycast(transform.position, -direction, Mathf.Infinity, rayMask);
+                        if (ray01.collider != null && ray02.collider != null) {
                             int ray01Index = System.Array.FindIndex(pathManager.pathCorners, x => x == ray01.collider.gameObject);
                             int ray02Index = System.Array.FindIndex(pathManager.pathCorners, x => x == ray02.collider.gameObject);
                             if ((Mathf.Abs(ray01Index - ray02Index) == 1) || (ray01Index == ray02Index)) {
                                 isValidPlace = false;
                                 break;
                             }
-
                         }
                     }
+                }
+                else {
+                    isValidPlace = false;
                 }
 
                 if (isValidPlace == true) {
@@ -79,6 +83,18 @@ public class td_towerPlacement : MonoBehaviour
                 flashRed = false;
                 flashAlarm = 0;
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag == "tower") {
+            insideTower = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col) {
+        if (col.gameObject.tag == "tower") {
+            insideTower = false;
         }
     }
 }

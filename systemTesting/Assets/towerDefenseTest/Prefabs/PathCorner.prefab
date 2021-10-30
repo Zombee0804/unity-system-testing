@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4736045913727764801}
   - component: {fileID: 4736045913727764800}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PathCorner
   m_TagString: cornerPoint
   m_Icon: {fileID: 0}
