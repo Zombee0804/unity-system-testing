@@ -7,6 +7,7 @@ public class td_shopItem : MonoBehaviour
     [Header("References")]
     public Camera cam;
     public td_shopMenu shopMenuUI;
+    public td_pathManager pathManager;
 
     [Header("Shop Vars")]
     public GameObject towerPrefab;
@@ -21,7 +22,9 @@ public class td_shopItem : MonoBehaviour
             mousePos = cam.ScreenToWorldPoint(mousePos);
             mousePos.z = 0;
             GameObject tower = Instantiate(towerPrefab, mousePos, Quaternion.identity);
-            tower.GetComponent<td_towerPlacement>().cam = cam;
+            td_towerPlacement towerPlacement = tower.GetComponent<td_towerPlacement>();
+            towerPlacement.cam = cam;
+            towerPlacement.pathManager = pathManager;
         }
     }
 }

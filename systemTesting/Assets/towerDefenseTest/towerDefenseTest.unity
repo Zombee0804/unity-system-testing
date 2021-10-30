@@ -351,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1484753716}
   shopMenuUI: {fileID: 545388557}
+  pathManager: {fileID: 278422909}
   towerPrefab: {fileID: 2647169980625715451, guid: 2ae51e47527a9ea478467105b1baf836,
     type: 3}
   price: 50
@@ -861,7 +862,7 @@ PrefabInstance:
     - target: {fileID: 4736045913727764801, guid: 30f56a100607cab479ad7c4053e651ae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4736045913727764801, guid: 30f56a100607cab479ad7c4053e651ae,
         type: 3}
@@ -1327,7 +1328,7 @@ PrefabInstance:
     - target: {fileID: 4736045913727764801, guid: 30f56a100607cab479ad7c4053e651ae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4736045913727764801, guid: 30f56a100607cab479ad7c4053e651ae,
         type: 3}

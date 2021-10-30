@@ -6,6 +6,7 @@ public class td_towerPlacement : MonoBehaviour
 {
     public Camera cam;
     private bool isPlaced;
+    public td_pathManager pathManager;
 
     public SpriteRenderer spriteRen;
     private bool flashRed;
@@ -39,8 +40,14 @@ public class td_towerPlacement : MonoBehaviour
                     RaycastHit2D ray02 = Physics2D.Raycast(transform.position, -direction);
                     if (ray01.collider != null && ray02.collider != null) {
                         if (ray01.collider.gameObject.tag == "cornerPoint" && ray02.collider.gameObject.tag == "cornerPoint") {
-                            isValidPlace = false;
-                            break;
+
+                            int ray01Index = System.Array.FindIndex(pathManager.pathCorners, x => x == ray01.collider.gameObject);
+                            int ray02Index = System.Array.FindIndex(pathManager.pathCorners, x => x == ray02.collider.gameObject);
+                            if (Mathf.Abs(ray01Index - ray02Index) == 1) {
+                                isValidPlace = false;
+                                break;
+                            }
+
                         }
                     }
                 }
