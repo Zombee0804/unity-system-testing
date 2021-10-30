@@ -47,8 +47,10 @@ public class td_towerAttacking : MonoBehaviour
             attackAlarm = 0;
             if (toHit != null) {
                 GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                proj.GetComponent<td_projectileMovement>().targetPos = toHit.transform.position + toHit.movement;
-                toHit.health -= towerDamage;
+                td_projectileMovement projMovement = proj.GetComponent<td_projectileMovement>();
+                // // projMovement.targetPos = toHit.transform.position + toHit.movement;
+                projMovement.toHit = toHit;
+                projMovement.damage = towerDamage;
             }
         }
         else {
