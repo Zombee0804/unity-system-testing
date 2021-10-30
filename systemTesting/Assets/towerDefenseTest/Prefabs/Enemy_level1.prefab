@@ -127,5 +127,6 @@ MonoBehaviour:
   speed: 5
   healthMax: 15
   health: 0
+  enemyValue: 10
   movement: {x: 0, y: 0, z: 0}
   posBuffer: 0.05

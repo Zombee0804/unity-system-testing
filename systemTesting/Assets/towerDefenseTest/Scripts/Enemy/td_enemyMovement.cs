@@ -11,6 +11,7 @@ public class td_enemyMovement : MonoBehaviour
     public float speed;
     public float healthMax;
     public float health;
+    public float enemyValue;
 
     [Header("Path Vars")]
     private int targetIndex;
@@ -43,6 +44,7 @@ public class td_enemyMovement : MonoBehaviour
         // Checking Health
         if (health <= 0) {
             Debug.Log(" Enemy Destroyed ");
+            td_playerWallet.playerMoney += enemyValue;
             Destroy(gameObject);
         }
     }
