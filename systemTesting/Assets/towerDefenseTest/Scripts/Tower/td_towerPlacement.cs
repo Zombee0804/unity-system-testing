@@ -52,7 +52,7 @@ public class td_towerPlacement : MonoBehaviour
 
                             int ray01Index = System.Array.FindIndex(pathManager.pathCorners, x => x == ray01.collider.gameObject);
                             int ray02Index = System.Array.FindIndex(pathManager.pathCorners, x => x == ray02.collider.gameObject);
-                            if (Mathf.Abs(ray01Index - ray02Index) == 1) {
+                            if ((Mathf.Abs(ray01Index - ray02Index) == 1) || (ray01Index == ray02Index)) {
                                 isValidPlace = false;
                                 break;
                             }
