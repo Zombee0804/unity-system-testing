@@ -20,9 +20,10 @@ public class td_enemySpawner : MonoBehaviour
 
     [Header("UI Vars")]
     public Text waveText;
+    public Text enemyText;
 
     void Start() {
-        currentWave = 0;
+        currentWave = -1;
 
         currentSpawnIndex = 0;
         currentWaveAlarm = 0;
@@ -31,6 +32,7 @@ public class td_enemySpawner : MonoBehaviour
         gameComplete = false;
 
         SetWaveText();
+        SetEnemyText();
     }
 
     void SetWaveText() {
@@ -38,21 +40,30 @@ public class td_enemySpawner : MonoBehaviour
         waveText.text = " Wave: " + (currentWave+1).ToString();
     }
 
+    void SetEnemyText() {
+        if (currentWave != -1) {
+            float enemiesSpawned = currentSpawnIndex;
+            float enemiesTotal = waves[currentWave].enemySpawnTimes.Length;
+            enemyText.text = " Enemies: " + enemiesSpawned.ToString() + "/" + enemiesTotal.ToString();
+        }
+    }
+
     void Update() {
         if (gameComplete == false) {
-            if (allEnemiesSpawned == false) {
+            if (allEnemiesSpawned == false && currentWave != -1) {
                 currentWaveAlarm += Time.deltaTime;
 
                 EnemyStruct enemySpawnData = waves[currentWave].enemySpawnTimes[currentSpawnIndex];
                 if (enemySpawnData.spawnTime < currentWaveAlarm) {
                     SpawnEnemy();
                     currentSpawnIndex += 1;
+                    SetEnemyText();
                 }
                 if (currentSpawnIndex >= waves[currentWave].enemySpawnTimes.Length) {
                     allEnemiesSpawned = true;
                 }
             }
-            else if (allEnemiesDestroyed == false) {
+            else if (allEnemiesDestroyed == false && currentWave != -1) {
                 allEnemiesDestroyed = true;
                 foreach (GameObject enemy in enemies) {
                     if (enemy != null) {
@@ -72,6 +83,7 @@ public class td_enemySpawner : MonoBehaviour
                     if (currentWave < waves.Length - 1) {
                         currentWave += 1;
                         SetWaveText();
+                        SetEnemyText(); // Updates total enemy count
                     }
                     else {
                         gameComplete = true;

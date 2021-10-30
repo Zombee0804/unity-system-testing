@@ -43,7 +43,6 @@ public class td_enemyMovement : MonoBehaviour
 
         // Checking Health
         if (health <= 0) {
-            Debug.Log(" Enemy Destroyed ");
             td_playerWallet.playerMoney += enemyValue;
             Destroy(gameObject);
         }
@@ -56,6 +55,7 @@ public class td_enemyMovement : MonoBehaviour
             targetIndex += 1;
         }
         else {
+            td_playerWallet.playerHealth -= 1;
             Destroy(gameObject);
         }
 

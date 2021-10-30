@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   pathManager: {fileID: 0}
+  price: 0
   spriteRen: {fileID: 5719756859102083136}
   flashLength: 0.25
 --- !u!114 &286934909715161172
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  towerRange: 5
+  towerRange: 2
   towerDamage: 5
   toHit: {fileID: 0}
   projectilePrefab: {fileID: 2807655294208807228, guid: 0b1b3875c2685ee4789ff0b3102a7ef4,

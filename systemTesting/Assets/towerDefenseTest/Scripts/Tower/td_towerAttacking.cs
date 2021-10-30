@@ -21,6 +21,7 @@ public class td_towerAttacking : MonoBehaviour
 
     void Update() {
         if (isPlaced == true) {
+            toHit = null;
             Vector2 origin = new Vector2(transform.position.x, transform.position.y);
 
             RaycastHit2D[] enemiesInRange = Physics2D.CircleCastAll(
