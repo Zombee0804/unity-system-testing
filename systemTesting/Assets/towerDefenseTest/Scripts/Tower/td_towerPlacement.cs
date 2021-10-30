@@ -54,6 +54,7 @@ public class td_towerPlacement : MonoBehaviour
 
                 if (isValidPlace == true) {
                     isPlaced = true;
+                    GetComponent<td_towerAttacking>().isPlaced = true;
                 }
                 else {
                     flashRed = true;

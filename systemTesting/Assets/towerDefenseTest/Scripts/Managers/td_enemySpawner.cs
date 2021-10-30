@@ -88,6 +88,8 @@ public class td_enemySpawner : MonoBehaviour
             Quaternion.identity
         );
         enemies.Add(enemy);
-        enemy.GetComponent<td_enemyMovement>().pathManager = pathManager;
+        td_enemyMovement enemyMovement = enemy.GetComponent<td_enemyMovement>();
+        enemyMovement.pathManager = pathManager;
+        enemyMovement.enemyIndex = currentSpawnIndex;
     }
 }

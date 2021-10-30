@@ -5,15 +5,17 @@ using UnityEngine;
 public class td_enemyMovement : MonoBehaviour
 {
     public td_pathManager pathManager;
+    public int enemyIndex;
 
     [Header("Enemy Vars")]
     public float speed;
     public float healthMax;
-    private float health;
+    public float health;
 
     [Header("Path Vars")]
     private int targetIndex;
     private Vector3 targetPos;
+    public Vector3 movement;
     public float posBuffer;
     private bool atTarget;
 
@@ -30,12 +32,18 @@ public class td_enemyMovement : MonoBehaviour
         }
         else {
             Vector3 diff = targetPos - transform.position;
-            Vector3 movement = diff.normalized; // Makes its magnitude (length) 1. E.G (6, 0, 0) would become (1, 0, 0)
+            movement = diff.normalized; // Makes its magnitude (length) 1. E.G (6, 0, 0) would become (1, 0, 0)
             if (diff.magnitude < posBuffer) {
                 atTarget = true;
                 transform.position = targetPos;
             }
             transform.position += movement * speed * Time.deltaTime;
+        }
+
+        // Checking Health
+        if (health <= 0) {
+            Debug.Log(" Enemy Destroyed ");
+            Destroy(gameObject);
         }
     }
 
