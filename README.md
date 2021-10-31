@@ -6,6 +6,7 @@
 * [Shader Test 01](#shader-test-01)
 * [Shader Test 02](#shader-test-02)
 * [Dialogue Test](#dialogue-test)
+* [Tower Defence](#tower-defence)
 
 ## Overview
 Before starting my final game project for college later this year, I wanted to create different mini-levels in Unity, each of them intending to test my ability to create a certain feature. One level may have a specific type of combat, one level may have a dialogue system, etc.
@@ -56,3 +57,28 @@ I am very proud of this part of the project specifically because it is a fairly 
 
 #### Reuslt
 ![Dialogue Test Gif](./files/dialogueTest.gif)
+
+## Tower Defence
+This section of the project was, by far, the most initimidating for me. But it also ended up being the most rewarding, the one I am most proud of. Similar to the dialogue test, I had attempted to create a tower defence project over a year ago. But I got stuck at the first hurdle and lost all motivation (as was a pattern with a lot of my projects at the time). This attempt was the complete opposite. I sat down and wrote out the key mechanics of a tower defence (enemies following a path, building towers, attacking enemies in range, etc), then split them into smaller sections if I needed to. For each of those steps, I then planned out how I was going to implement it in detail. And thus it begun...  
+
+### Enemies
+The first step was getting enemies to spawn and follow a path. I wanted to have this path be easy to change. I created a 'Path Manager', which stores an array of objects. These objects would act as the corners of the path. The enemies would set the 1st object as their destination, and move towards it. Once they got there, they would select the next corner and repeat the process. To make it more visual, I used Unitys Gizmos functionality to draw lines between the corners. This meants that I could see the path in the scene editor.
+
+For enemy movement, I created 'Wave' objects, which can be of any length. Each element in the wave contains the enemy type (red or green), and the time at which they should spawn. This allows you to easily change which enemies spawn, and the time they spawn at. Each enemy is spawned at the first point in the path, and they move towards the second. When they reach the end of the path, they get destroyed and do damage to the player. Different enemy types do different damage.
+
+Much later down the line, I realised that the player should probably have a way of seeing the path in-game. Initially, I just looped through the array of path corners, and spawned a sprite between them. I then stretched them on the x or y axis to fill the gap. This worked, but only allowed for horizontal or vertical paths. While it's a rare case, I wanted to allow for diagonal paths. This took me a while to figure out, but I eventually change the system to make the sprite tall enough to fill the gap, and then just rotated it based on the angle.
+
+![Path Visualisation](./files/towerDefense_pathVis.gif)
+
+### Towers
+The next major mechanic in a tower defence game is building towers. I flicked between wanting to use a grid system, but eventually decided against it so that it felt more like Bloons Tower Defense. When the player presses escape, the game pauses and the shop UI appears. This was easy enough to do, and there are many resources for this. There are buttons, which you can click if you can afford the tower. When the object is created, it has a 'isPlaced' value which is set to false. While this value is false, the tower follows the mouse. When the player clicks, it checks if the current position is valid, and sets the 'isPlaced' value to true if its valid. There was a few different collision systems that I went through before deciding on the current one. The tower sends out four rays. If the right and left one both collide with a path corner, then it checks their ID (the index in the path). If the IDs are consecutive, then it means it is between two points, and therefore on the path.
+
+The towers each have a range, speed, damage, and a number of other parameters. Each enemy also has a value, which is added to the players money when it is killed. The only major issue I had with the towers was the attacking. Seeing as the enemies are moving, I wanted the towers themselves to do the damage, and the bullet is only visual. This later proved as an issue because the enemies were dying as the bullet was fired, instead of when it got hit. To get around this, while still not using regular collision, I just made the bullet do the damage when it destroys itself (which is roughly when it is at the enemy)
+
+![Tower Placement](./files/towerDefense_towerPlacement.gif)
+
+### Other Gameplay
+The only other feature I may want to add to the game is the ability to sell or upgrade towers. But seeing as this is only meant to be a test project, I thought it best not to go overboard with features.
+
+There are a few graphic issues with the gif below, but these are an issue with the gif and are not present in the game.
+![Tower Defence Gameplay](./files/towerDefense_gameplay.gif)
