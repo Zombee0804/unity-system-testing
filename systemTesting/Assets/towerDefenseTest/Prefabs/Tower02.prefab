@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4876976153459416893}
   - component: {fileID: 286934909715161172}
   m_Layer: 0
-  m_Name: Tower01
+  m_Name: Tower02
   m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 05156310887c3cf4c88aa6bcd1c7102b, type: 3}
-  m_Color: {r: 0, g: 0.5651498, b: 0.7169812, a: 1}
+  m_Color: {r: 0.9528302, g: 0.6489472, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -163,12 +163,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  towerRange: 2
+  towerRange: 3
   towerDamage: 5
   toHit: {fileID: 0}
   projectilePrefab: {fileID: 2807655294208807228, guid: 0b1b3875c2685ee4789ff0b3102a7ef4,
     type: 3}
-  attackInterval: 0.5
+  attackInterval: 0.25
   attackAlarm: 0
   lastProj: {fileID: 0}
   bulletLife: 0.5

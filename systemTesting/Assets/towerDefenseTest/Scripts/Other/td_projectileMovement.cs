@@ -16,7 +16,6 @@ public class td_projectileMovement : MonoBehaviour
             Destroy(gameObject);
         }
         else {
-            // // Vector3 diff = targetPos - transform.position;
             Vector3 diff = toHit.transform.position - transform.position;
 
             if (diff.magnitude < endBuffer) {

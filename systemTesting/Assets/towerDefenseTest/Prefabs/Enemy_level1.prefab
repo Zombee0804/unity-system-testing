@@ -125,8 +125,9 @@ MonoBehaviour:
   pathManager: {fileID: 0}
   enemyIndex: 0
   speed: 5
-  healthMax: 15
+  healthMax: 20
   health: 0
+  enemyDamage: 1
   enemyValue: 10
   movement: {x: 0, y: 0, z: 0}
   posBuffer: 0.05

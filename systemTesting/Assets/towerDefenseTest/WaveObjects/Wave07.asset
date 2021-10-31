@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157504dbdcff2e04993455eb493e6519, type: 3}
+  m_Name: Wave07
+  m_EditorClassIdentifier: 
+  enemySpawnTimes:
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 1
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 1.5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 2
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 2.5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 3
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 3.5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 4
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 4.5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 5.5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 6
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 6.5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 7
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 7.5
+  - enemyPrefab: {fileID: 4051197902571230593, guid: e19262709e844944b97fb7dbea07e9d5,
+      type: 3}
+    spawnTime: 8

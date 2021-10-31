@@ -20,6 +20,7 @@ public class td_enemySpawner : MonoBehaviour
 
     [Header("UI Vars")]
     public Text waveText;
+    public Color completeColour;
     public Text enemyText;
 
     void Start() {
@@ -73,7 +74,7 @@ public class td_enemySpawner : MonoBehaviour
                 }
             }
             else {
-                waveText.color = Color.green;
+                waveText.color = completeColour;
                 if (Input.GetKeyDown(KeyCode.Space) == true) {
                     currentSpawnIndex = 0;
                     currentWaveAlarm = 0;

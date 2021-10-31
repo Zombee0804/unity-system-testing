@@ -11,9 +11,13 @@ public class td_towerAttacking : MonoBehaviour
     public td_enemyMovement toHit;
     public GameObject projectilePrefab;
 
-    [Header("Attacking Timers")]
+    [Header("Attacking Vars")]
     public float attackInterval;
     public float attackAlarm;
+
+    public td_projectileMovement lastProj;
+    public float bulletLife;
+    public float bulletAlarm;
 
     void Start() {
         isPlaced = false;
@@ -41,6 +45,7 @@ public class td_towerAttacking : MonoBehaviour
         }
 
         DamageEnemy();
+        BulletLife();
     }
 
     void DamageEnemy() {
@@ -48,14 +53,23 @@ public class td_towerAttacking : MonoBehaviour
             attackAlarm = 0;
             if (toHit != null) {
                 GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                td_projectileMovement projMovement = proj.GetComponent<td_projectileMovement>();
-                // // projMovement.targetPos = toHit.transform.position + toHit.movement;
-                projMovement.toHit = toHit;
-                projMovement.damage = towerDamage;
+                lastProj = proj.GetComponent<td_projectileMovement>();
+                lastProj.toHit = toHit;
+                lastProj.damage = towerDamage;
             }
         }
         else {
             attackAlarm += Time.deltaTime;
+        }
+    }
+
+    void BulletLife() {
+        if (lastProj != null) {
+            bulletAlarm += Time.deltaTime;
+            if (bulletAlarm >= bulletLife) {
+                Destroy(lastProj.gameObject);
+                bulletAlarm = 0;
+            }
         }
     }
 
