@@ -14,6 +14,7 @@ public class ele_playerMovement : MonoBehaviour
     private int jumpCount;
     public int jumpCountMax;
     public bool isGrounded;
+    public float lastDir;
 
     [Header("Health")]
     public float startingHealth;
@@ -32,6 +33,7 @@ public class ele_playerMovement : MonoBehaviour
     void PlayerMovement() {
         float movement = Input.GetAxisRaw("Horizontal");
         playerBody.position += new Vector2(movement, 0) * moveSpeed * Time.deltaTime;
+        lastDir = Mathf.Sign(movement);
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < jumpCountMax) {
             playerBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
