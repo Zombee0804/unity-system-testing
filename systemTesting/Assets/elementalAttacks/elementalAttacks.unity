@@ -191,6 +191,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6729286977250891601, guid: 54ebcc838918e4b4698fda8960157cd5,
+        type: 3}
+      propertyPath: startingHealth
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6729286977250891601, guid: 54ebcc838918e4b4698fda8960157cd5,
+        type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 200612449}
+    - target: {fileID: 6729286977250891601, guid: 54ebcc838918e4b4698fda8960157cd5,
+        type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 200612447}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ebcc838918e4b4698fda8960157cd5, type: 3}
 --- !u!1 &200612446
@@ -363,7 +378,7 @@ MonoBehaviour:
   playerMovement: {fileID: 200612447}
   attackTypes:
   - name: Fire
-    initalDamage: 0
+    initalDamage: 5
     iconSprite: {fileID: 8096739053127876192, guid: f2852319ca2fc08429dd26066e98f110,
       type: 3}
   - name: Earth
@@ -382,7 +397,7 @@ MonoBehaviour:
     name: 
     initalDamage: 0
     iconSprite: {fileID: 0}
-  attackRange: 0
+  attackRange: 3
 --- !u!1 &644204357
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +548,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6729286977250891601, guid: 54ebcc838918e4b4698fda8960157cd5,
+        type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 200612449}
+    - target: {fileID: 6729286977250891601, guid: 54ebcc838918e4b4698fda8960157cd5,
+        type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 200612447}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ebcc838918e4b4698fda8960157cd5, type: 3}
 --- !u!1 &1484753714

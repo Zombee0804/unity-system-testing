@@ -63,4 +63,8 @@ public class ele_enemyMovement : MonoBehaviour
             }
         }
     }
+
+    public void DamageEnemy(float damage, string damageType) {
+        currentHealth -= damage;
+    }
 }

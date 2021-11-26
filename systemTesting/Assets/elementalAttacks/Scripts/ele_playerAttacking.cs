@@ -48,10 +48,8 @@ public class ele_playerAttacking : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit2D attackRay = Physics2D.Raycast(transform.position, new Vector2(playerMovement.lastDir, 0), attackRange);
             if (attackRay.collider != null) {
-                Debug.Log("Hit");
-            }
-            else {
-                Debug.Log("Miss");
+                ele_enemyMovement enemyMovement = attackRay.collider.gameObject.GetComponent<ele_enemyMovement>();
+                enemyMovement.DamageEnemy(currentElement.initialDamage, "");
             }
         }
     }
